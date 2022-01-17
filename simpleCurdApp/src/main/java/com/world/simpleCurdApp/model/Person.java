@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,7 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-
+@Builder
 @Document(collection = "personCollection")
 public class Person {
 	@Id
