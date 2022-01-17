@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.world.simpleCurdApp.Controllers.Routers.Routes;
 import com.world.simpleCurdApp.model.Person;
@@ -41,6 +44,16 @@ public class PersonController {
 		} catch (Exception e) {
 			return e.toString();
 		}
+	}
+
+	@PutMapping(Routes.updatePersonById)
+	public ResponseEntity<Person> updatePerson(@PathVariable(value = "id") String id, @RequestBody Person person)
+			throws NotFoundException {
+		Person oldPerson = personReops.findById(id).orElseThrow(() -> new NotFoundException());
+
+		person.setId(oldPerson.getId());
+		personReops.save(person);
+		return ResponseEntity.ok(person);
 	}
 
 }

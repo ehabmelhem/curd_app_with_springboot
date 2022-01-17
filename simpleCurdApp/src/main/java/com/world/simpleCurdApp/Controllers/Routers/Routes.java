@@ -7,5 +7,9 @@ public static final String ADD_PERSON="/addPerson";
 
 public static final String getAllPeople ="/getAll";
 public static final String getPersonById = "/getPerson/{id}";
+
 public static final String deletePersonById = "/deletePerson/{id}";
+
+public static final String updatePersonById = "/updatePerson/{id}";
+
 }
