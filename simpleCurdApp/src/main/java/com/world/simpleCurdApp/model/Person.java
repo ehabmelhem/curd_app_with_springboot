@@ -1,5 +1,11 @@
 package com.world.simpleCurdApp.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,7 +20,31 @@ import lombok.ToString;
 @Document(collection = "personCollection")
 public class Person {
 	@Id
+    @NotBlank(message = "ID is mandatory")
+	@Size(min=3, max=40)
 	private String id;
+	
+    @NotBlank(message = "Name is mandatory")
+	@Size(min=3, max=20)
+	private String name;
+    
+    @NotNull(message = "age is mandatory")
+    @Min(0)
+    @Max(200)
+	private int age;
+    
+    @NotNull(message = "Gender is mandatory")
+	private Gender gender;
+    
+    @NotNull(message = "height is mandatory")
+    @Min(0)
+	private double height;
+    
+    @NotNull(message = "weight is mandatory")
+    @Min(0)
+	private double weight;
+    
+	private Address address;
 	
 	public String getId() {
 		return id;
@@ -72,12 +102,7 @@ public class Person {
 		this.address = address;
 	}
 
-	private String name;
-	private int age;
-	private Gender gender;
-	private double height;
-	private double weight;
-	private Address address;
+
 
 	@Override
 	public String toString() {
