@@ -102,12 +102,5 @@ public class Person {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-
-
-
-	@Override
-	public String toString() {
-		return id+" "+name+" "+age+" "+gender+" "+height+" "+weight;
-	}
 	
 }
